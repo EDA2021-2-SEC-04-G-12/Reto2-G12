@@ -342,10 +342,23 @@ def ArtistArtworksbyMedium (DisplayName,catalog) :
     Artworks = me.getValue(entry) 
     tamanio = lt.size(Artworks) 
     mediumArtwork = {'NA':''}
+    tamanioArtwork = {'NA':''}
     i = 1 
     while i <= tamanio : 
         artwork = lt.getElement(Artworks,i) 
-    pass 
+        medio = artwork['Medium'] 
+        if medio in mediumArtwork.keys():
+            mediumArtwork[medio].append(artwork)
+            tamanioArtwork[medio] += 1 
+        else : 
+            if len(medio) == 0 :
+                medio = 'NA' 
+            mediumArtwork[medio] = []
+            mediumArtwork[medio].append(artwork)
+            tamanioArtwork[medio] = 0 
+    
+    
+    
 
 #TODO: Funciones req 5 
 def calcularCosto(artwork) :

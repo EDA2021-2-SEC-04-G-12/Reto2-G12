@@ -20,6 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
 import config as cf
 import sys
 import controller
@@ -38,6 +39,7 @@ def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
     print("2- Imprimir los n mas antiguos por medio")
+    
 
 catalog = None
 def initCatalog() : 
@@ -49,6 +51,8 @@ def oldestArtworksbyMedium(catalog,medium,n):
     return controller.oldestbyMedium(catalog,medium,n) 
 def transportarObras(depto,catalog) : 
     return controller.transportarObras(depto,catalog)
+def ArtistArtworksbymedium(catalog,Artista): 
+    return controller.ArtistArtworksbymedium(catalog,Artista)
 
 """
 Menu principal
@@ -88,6 +92,12 @@ while True:
     elif int(inputs[0]) == 5 : 
         Depto = input('Ingrese el departamento a transportar: ')
         Transporte = transportarObras(Depto,catalog)
+    
+    elif int(inputs[0]) == 8: 
+        Artista = input('Ingrese el artista a consultar: ')
+        Value = ArtistArtworksbymedium(catalog,Artista) 
+
+        
         
 
 

@@ -55,6 +55,7 @@ def loadArtworks(catalog):
     input_file = csv.DictReader(open(artworksfile,encoding='utf-8'))
     model.sortArtistID(catalog['Artist'],3)
     for artwork in input_file : 
+
         model.addArtWork(catalog,artwork)
 # Funciones de ordenamiento
 
@@ -74,6 +75,10 @@ def listCronoArtist(anioinicial,aniofinal,catalog):
 def transportarObras(depto,catalog) : 
     transportar = model.transportarObras(depto,catalog)
     return transportar 
+
+def ArtistArtworksbymedium(catalog,Artista) : 
+    Value = model.ArtistArtworksbyMedium(Artista,catalog)
+
 
 
    

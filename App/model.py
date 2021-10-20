@@ -339,7 +339,8 @@ def listCronoArtist(anioinicial,aniofinal,catalog) :
 #TODO: Funciones req 3
 def ArtistArtworksbyMedium (DisplayName,catalog) : 
     entry = mp.get(catalog['ArtworksByArtist'],DisplayName)
-    Artworks = me.getValue(entry) 
+    Value = me.getValue(entry) 
+    Artworks = Value['artWorks']
     tamanio = lt.size(Artworks) 
     mediumArtwork = {'NA':''}
     tamanioArtwork = {'NA':''}
@@ -356,6 +357,11 @@ def ArtistArtworksbyMedium (DisplayName,catalog) :
             mediumArtwork[medio] = []
             mediumArtwork[medio].append(artwork)
             tamanioArtwork[medio] = 0 
+        i += 1
+    return mediumArtwork, tamanioArtwork 
+
+
+
     
     
     

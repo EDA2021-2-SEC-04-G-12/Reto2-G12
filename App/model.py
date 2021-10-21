@@ -342,8 +342,8 @@ def ArtistArtworksbyMedium (DisplayName,catalog) :
     Value = me.getValue(entry) 
     Artworks = Value['artWorks']
     tamanio = lt.size(Artworks) 
-    mediumArtwork = {'NA':''}
-    tamanioArtwork = {'NA':''}
+    mediumArtwork = {}
+    tamanioArtwork = {}
     i = 1 
     while i <= tamanio : 
         artwork = lt.getElement(Artworks,i) 
@@ -356,11 +356,32 @@ def ArtistArtworksbyMedium (DisplayName,catalog) :
                 medio = 'NA' 
             mediumArtwork[medio] = []
             mediumArtwork[medio].append(artwork)
-            tamanioArtwork[medio] = 0 
+            tamanioArtwork[medio] = 1
         i += 1
-    return mediumArtwork, tamanioArtwork 
+    return mediumArtwork, tamanioArtwork ,tamanio
 
-
+def masUtilizada(mediumArtwork,tamanioArtwork) : 
+    llaveMayor = ''
+    mayor = 0 
+    for k,v in tamanioArtwork.items(): 
+        if v > mayor : 
+            mayor = v
+            llaveMayor = k
+    Primeros_3 = []
+    Ultimos_3 = []
+    mediumArtworks = mediumArtwork[llaveMayor]
+    i = 0 
+    while i < 3 : 
+        artwork = mediumArtworks[i]
+        Primeros_3.append(artwork)
+        i += 1
+    j = len(mediumArtworks) - 3
+    while j < len(mediumArtworks) : 
+        artwork = mediumArtworks[j]
+        Ultimos_3.append(artwork)
+        j += 1 
+    return Primeros_3,Ultimos_3 
+      
 
     
     

@@ -45,13 +45,13 @@ def loadData(catalog) :
     loadArtworks(catalog)
 
 def loadArtists(catalog) : 
-    artistsfile = cf.data_dir + 'Artists-utf8-small.csv' 
+    artistsfile = cf.data_dir + 'Artists-utf8-large.csv' 
     input_file = csv.DictReader(open(artistsfile,encoding='utf-8'))
     for artist in input_file: 
         model.addArtist(catalog,artist)
 
 def loadArtworks(catalog): 
-    artworksfile = cf.data_dir + 'Artworks-utf8-small.csv'
+    artworksfile = cf.data_dir + 'Artworks-utf8-large.csv'
     input_file = csv.DictReader(open(artworksfile,encoding='utf-8'))
     model.sortArtistID(catalog['Artist'],3)
     for artwork in input_file : 
@@ -78,6 +78,11 @@ def transportarObras(depto,catalog) :
 
 def ArtistArtworksbymedium(catalog,Artista) : 
     Value = model.ArtistArtworksbyMedium(Artista,catalog)
+    muestraListado = model.masUtilizada(Value[0],Value[1]) 
+    return Value[2],muestraListado[0],muestraListado[1]
+
+
+
 
 
 

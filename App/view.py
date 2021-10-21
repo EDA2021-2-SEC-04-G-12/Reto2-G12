@@ -96,6 +96,9 @@ while True:
     elif int(inputs[0]) == 8: 
         Artista = input('Ingrese el artista a consultar: ')
         Value = ArtistArtworksbymedium(catalog,Artista) 
+        print(Value[0])
+        print(Value[1])
+        print(Value[2])
 
         
         

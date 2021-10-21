@@ -76,8 +76,8 @@ def listArtworkbyDate (fecha_inicial, fecha_final,catalog) :
     fecha_A = date.datetime.strptime(fecha_inicial,'%Y-%m-%d')
     fecha_B = date.datetime.strptime(fecha_final,'%Y-%m-%d')
     artWorks = model.listArtworkbyDate(fecha_A, fecha_B,catalog)
-    Cuenta_purchase = model.countPurchasedArtwork(artWorks)
-    return artWorks,Cuenta_purchase 
+    Cuenta_purchase = model.countPurchasedArtwork(artWorks[0])
+    return artWorks[0],Cuenta_purchase,artWorks[1]
 
 def transportarObras(depto,catalog) : 
     transportar = model.transportarObras(depto,catalog)
@@ -96,6 +96,7 @@ def ArtistArtworksbymedium(catalog,Artista) :
 
 
 
+    return obra
 
    
 # Funciones de conteo

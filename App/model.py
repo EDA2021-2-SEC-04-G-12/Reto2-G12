@@ -444,6 +444,7 @@ def listCronoArtist(anioinicial,aniofinal,catalog) :
 #TODO: Funciones req 2
 
 def listArtworkbyDate(fechainicial,fechafinal,catalog):
+    start_time = time.process_time()
     datesAq = catalog["DateAcquired"]
     dates = mp.keySet(catalog["DateAcquired"])
     datosart = lt.newList("ARRAY_LIST")
@@ -464,7 +465,9 @@ def listArtworkbyDate(fechainicial,fechafinal,catalog):
                 j += 1
         i += 1
     mer.sort(datosart,cmpArtworkByDateAcquired)
-    return datosart
+    stop_time = time.process_time()
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return datosart, elapsed_time_mseg
 
 def countPurchasedArtwork(artworks): 
     size = lt.size(artworks)
@@ -537,22 +540,30 @@ def getBooksByYear(catalog, year):
 def Artworksbynationality (catalog):
     artworks = catalog['Artwork']
     obra = lt.newList('ARRAY_LIST')
-    sortArtistID(catalog,2)
     i = 1
-    while i < lt.size(artworks['Nationality']):
+    while i < lt.size(artworks):
         artwork = lt.getElement(catalog['Artwork'],i)
+        print('---------------------------------------------------------------------')
+        print(artwork)
         artwork['ArtistsNames'] = ''
         ids = artwork['ConstituentID'].strip('[]').split(',')
         for id in ids:
             artist = searchArtistInfo(catalog,int(id))
+            print('---------------------------------------------------------------------')
+            print(artist)
             datosartist = lt.getElement(catalog['Artist'],artist)
-            lt.addLast(artwork['ArtistNames'], datosartist)
+            print('---------------------------------------------------------------------')
+            print(datosartist)
+            lt.addLast(obra, datosartist)
             nacionality = datosartist['Nationality']
+            print('---------------------------------------------------------------------')
+            print(nacionality)
             if mp.contains(catalog['Nationality'],nacionality):
                 lt.addLast(obra, artwork)
             else:
                 lt.addLast(obra,artwork)
         i += 1
+    print(obra)
     return obra
 
 def sortObras (obra):

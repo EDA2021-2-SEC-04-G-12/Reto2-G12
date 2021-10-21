@@ -84,9 +84,10 @@ def transportarObras(depto,catalog) :
     return transportar 
 
 def Artworksbynationality (catalog):
-    obra = model.Artworksbynationality (catalog)
-    orderList = model.sortObras (obra)
-    return orderList
+    catalog = model.Artworksbynationality(catalog)
+    obra = model.Artworksbynationality_2 (catalog)
+    return obra
+    
 def ArtistArtworksbymedium(catalog,Artista) : 
     Value = model.ArtistArtworksbyMedium(Artista,catalog)
     muestraListado = model.masUtilizada(Value[0],Value[1]) 
@@ -96,7 +97,7 @@ def ArtistArtworksbymedium(catalog,Artista) :
 
 
 
-    return obra
+    
 
    
 # Funciones de conteo

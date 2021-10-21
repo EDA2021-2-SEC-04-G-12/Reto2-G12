@@ -141,7 +141,6 @@ while True:
         anioinicial = int(input("Ingrese el año inicial: "))
         aniofinal = int(input("Ingrese el año final: ")) 
         artistas = controller.listCronoArtist(anioinicial,aniofinal,catalog) 
-        print("El tiempo de ejecución del requerimiento 1 es de: " + str(artistas[1]))
         i = 1 
         while i <= 3 :
             print(lt.getElement(artistas[0],i))

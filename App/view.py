@@ -20,6 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
 import config as cf
 import sys
 import controller
@@ -67,7 +68,7 @@ def listArtworkbyDate (fecha_inicial, fecha_final,catalog) :
 
 def printArtWork(artWork): 
     print("ObjectID: " + artWork['ObjectID'] + '\t|\t' + 'Title ' + artWork['Title'] + '\t|\t'  + 
-    "Medium: " + artWork['Medium'] + "\t|\t" + "Dimensions: " + artWork['Dimensions'] + "\t|\t" + "Date: " + artwork['Date'] + "\t|\t" +
+    "Medium: " + artWork['Medium'] + "\t|\t" + "Dimensions: " + artWork['Dimensions'] + "\t|\t" + "Date: " + artWork['Date'] + "\t|\t" +
     'DateAcquired: ' + artWork['DateAcquired'] + "\t|\t" + "URL: " + artWork['URL'])
 
 def printArtworksbyNationality(artwork):
@@ -75,6 +76,12 @@ def printArtworksbyNationality(artwork):
 
 def transportarObras(depto,catalog) : 
     return controller.transportarObras(depto,catalog)
+def ArtistArtworksbymedium(catalog,Artista): 
+    return controller.ArtistArtworksbymedium(catalog,Artista)
+
+def printArtworkREQ3(artwork) : 
+    print('Title: ' + artwork['Title'] + '\t|\t' + "Date: " + artwork['Date'] + '\t|\t' + 'Medium: ' + artwork['Medium'] + "\t|\t" + \
+        "Dimensions: " +  artwork['Dimensions'])
 
 def printTransportarObras(transporte, depto):
     
@@ -144,6 +151,25 @@ while True:
         while j > lt.size(artistas[0]) - 3 : 
             print(lt.getElement(artistas[0],j))
             j -= 1 
+    
+    elif int(inputs[0]) == 6: 
+        Artista = input('Ingrese el artista a consultar: ')
+        Value = ArtistArtworksbymedium(catalog,Artista) 
+        print("MOMA tiene: " + str(Value[0]) + " piezas de: " + Artista)
+        print("El medio mas utilizado por el artista fue: " + Value[4])
+ #       for k,v in Value[1].items() : 
+ #           print("Medium: " + k + '\t|\t' + "Numero de obras : " + str(v))
+        print("Las primeras 3 del medio mas utilizado son: " + '\n')
+        print("-"*50 + '\n')
+        for obra in Value[2] : 
+            printArtworkREQ3(obra)
+            print("-"*50 + '\n')
+        print("Las 3 ultimas obras del medio mas utilizado son: " + '\n')
+        for obra in Value[3] : 
+            printArtworkREQ3(obra)
+            print("-"*50 + '\n')
+        
+         
         
 
     elif int(inputs[0]) == 5: 

@@ -521,7 +521,7 @@ def masUtilizada(mediumArtwork,tamanioArtwork) :
         artwork = mediumArtworks[j]
         Ultimos_3.append(artwork)
         j += 1 
-    return Primeros_3,Ultimos_3 
+    return Primeros_3,Ultimos_3,llaveMayor 
       
 
 # Funciones requerimiento 4

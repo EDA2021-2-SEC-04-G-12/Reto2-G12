@@ -20,7 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-from App.model import oldestn
+
 import config as cf
 import model
 import csv
@@ -46,16 +46,17 @@ def loadData(catalog) :
     loadArtworks(catalog)
 
 def loadArtists(catalog) : 
-    artistsfile = cf.data_dir + 'Artists-utf8-small.csv' 
+    artistsfile = cf.data_dir + 'Artists-utf8-large.csv' 
     input_file = csv.DictReader(open(artistsfile,encoding='utf-8'))
     for artist in input_file: 
         model.addArtist(catalog,artist)
 
 def loadArtworks(catalog): 
-    artworksfile = cf.data_dir + 'Artworks-utf8-small.csv'
+    artworksfile = cf.data_dir + 'Artworks-utf8-large.csv'
     input_file = csv.DictReader(open(artworksfile,encoding='utf-8'))
     model.sortArtistID(catalog['Artist'],3)
     for artwork in input_file : 
+
         model.addArtWork(catalog,artwork)
 # Funciones de ordenamiento
 
@@ -86,6 +87,15 @@ def Artworksbynationality (catalog):
     obra = model.Artworksbynationality (catalog)
     orderList = model.sortObras (obra)
     return orderList
+def ArtistArtworksbymedium(catalog,Artista) : 
+    Value = model.ArtistArtworksbyMedium(Artista,catalog)
+    muestraListado = model.masUtilizada(Value[0],Value[1]) 
+    return Value[2],Value[1],muestraListado[0],muestraListado[1],muestraListado[2]
+
+
+
+
+
 
    
 # Funciones de conteo
